@@ -30,16 +30,15 @@ public class ColorsActivity extends AppCompatActivity {
 
         // Create an arraylist of words
         ArrayList<Word> words = new ArrayList<Word>();
-        words.add(new Word ("Red","Ahmar"));
-        words.add(new Word ("Yellow","Asfar"));
-        words.add(new Word ("Green","Akhdar"));
-        words.add(new Word ("Blue","Azraq"));
-        words.add(new Word ("Orange","Butqali"));
-        words.add(new Word ("Black","Aswad"));
-        words.add(new Word ("White","Abyadh"));
-        words.add(new Word ("Gray","Ramadi"));
-        words.add(new Word ("Brown","Bonni"));
-        words.add(new Word ("Purple","Banafsaji"));
+        words.add(new Word ("Red","Ahmar",R.drawable.color_red));
+        words.add(new Word ("Yellow","Asfar",R.drawable.color_mustard_yellow));
+        words.add(new Word ("Green","Akhdar",R.drawable.color_green));
+        words.add(new Word ("Dusty Yellow","ASfar Ghameq",R.drawable.color_dusty_yellow));
+        words.add(new Word ("Black","Aswad",R.drawable.color_black));
+        words.add(new Word ("White","Abyadh",R.drawable.color_white));
+        words.add(new Word ("Gray","Ramadi",R.drawable.color_gray));
+        words.add(new Word ("Brown","Bonni",R.drawable.color_brown));
+
 
         /* Verify the contents of the array by printing out each arraylist element to the logs
         Log.v("NumbersActivity", "Word at index 0: " + words.get(0));

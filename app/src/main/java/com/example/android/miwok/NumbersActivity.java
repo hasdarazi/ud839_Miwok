@@ -30,16 +30,16 @@ public class NumbersActivity extends AppCompatActivity {
 
         // Create an arraylist of words
         ArrayList<Word> words = new ArrayList<Word>();
-        words.add(new Word ("one","wahed"));
-        words.add(new Word ("two","Ethnan"));
-        words.add(new Word ("three","Thalathah"));
-        words.add(new Word ("four","Arba'a"));
-        words.add(new Word ("five","Khamasah"));
-        words.add(new Word ("six","Sittah"));
-        words.add(new Word ("seven","Saba'ah"));
-        words.add(new Word ("eight","Thamanyah"));
-        words.add(new Word ("nine","Tes'ah"));
-        words.add(new Word ("ten","Asharah"));
+        words.add(new Word ("one","wahed",R.drawable.number_one));
+        words.add(new Word ("two","Ethnan",R.drawable.number_two));
+        words.add(new Word ("three","Thalathah",R.drawable.number_three));
+        words.add(new Word ("four","Arba'a",R.drawable.number_four));
+        words.add(new Word ("five","Khamasah",R.drawable.number_five));
+        words.add(new Word ("six","Sittah",R.drawable.number_six));
+        words.add(new Word ("seven","Saba'ah",R.drawable.number_seven));
+        words.add(new Word ("eight","Thamanyah",R.drawable.number_eight));
+        words.add(new Word ("nine","Tes'ah",R.drawable.number_nine));
+        words.add(new Word ("ten","Asharah",R.drawable.number_ten));
 
         /* Verify the contents of the array by printing out each arraylist element to the logs
         Log.v("NumbersActivity", "Word at index 0: " + words.get(0));

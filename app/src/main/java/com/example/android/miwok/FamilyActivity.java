@@ -30,16 +30,16 @@ public class FamilyActivity extends AppCompatActivity {
 
         // Create an arraylist of words
         ArrayList<Word> words = new ArrayList<Word>();
-        words.add(new Word ("Father","ab"));
-        words.add(new Word ("Mother","omm"));
-        words.add(new Word ("Son","ebin"));
-        words.add(new Word ("Daughter","ebinah"));
-        words.add(new Word ("Brother","akh"));
-        words.add(new Word ("Sister","akhot"));
-        words.add(new Word ("Grandmother","jaddati"));
-        words.add(new Word ("Grandfather","jaddi"));
-        words.add(new Word ("uncle from father","a'mm"));
-        words.add(new Word ("uncle from mother","khal"));
+        words.add(new Word ("Father","ab",R.drawable.family_father));
+        words.add(new Word ("Mother","omm",R.drawable.family_mother));
+        words.add(new Word ("Son","ebin",R.drawable.family_son));
+        words.add(new Word ("Daughter","ebinah",R.drawable.family_daughter));
+        words.add(new Word ("Brother","akh",R.drawable.family_younger_brother));
+        words.add(new Word ("Sister","akhot",R.drawable.family_younger_sister));
+        words.add(new Word ("Grandmother","jaddati",R.drawable.family_grandmother));
+        words.add(new Word ("Grandfather","jaddi",R.drawable.family_grandfather));
+        words.add(new Word ("uncle from father","a'mm",R.drawable.family_father));
+        words.add(new Word ("uncle from mother","khal",R.drawable.family_mother));
 
         /* Verify the contents of the array by printing out each arraylist element to the logs
         Log.v("NumbersActivity", "Word at index 0: " + words.get(0));
