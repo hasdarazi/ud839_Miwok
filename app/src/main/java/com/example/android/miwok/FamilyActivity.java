@@ -15,13 +15,20 @@
  */
 package com.example.android.miwok;
 
+import android.media.MediaPlayer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
 public class FamilyActivity extends AppCompatActivity {
+
+    /** Handles playback of all the sound files */
+    private MediaPlayer mMediaPlayer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,17 +36,17 @@ public class FamilyActivity extends AppCompatActivity {
         setContentView(R.layout.word_list);
 
         // Create an arraylist of words
-        ArrayList<Word> words = new ArrayList<Word>();
-        words.add(new Word ("Father","ab",R.drawable.family_father));
-        words.add(new Word ("Mother","omm",R.drawable.family_mother));
-        words.add(new Word ("Son","ebin",R.drawable.family_son));
-        words.add(new Word ("Daughter","ebinah",R.drawable.family_daughter));
-        words.add(new Word ("Brother","akh",R.drawable.family_younger_brother));
-        words.add(new Word ("Sister","akhot",R.drawable.family_younger_sister));
-        words.add(new Word ("Grandmother","jaddati",R.drawable.family_grandmother));
-        words.add(new Word ("Grandfather","jaddi",R.drawable.family_grandfather));
-        words.add(new Word ("uncle from father","a'mm",R.drawable.family_father));
-        words.add(new Word ("uncle from mother","khal",R.drawable.family_mother));
+        final ArrayList<Word> words = new ArrayList<Word>();
+        words.add(new Word ("Father","ab",R.drawable.family_father ,R.raw.family_father));
+        words.add(new Word ("Mother","omm",R.drawable.family_mother ,R.raw.family_mother));
+        words.add(new Word ("Son","ebin",R.drawable.family_son ,R.raw.family_son));
+        words.add(new Word ("Daughter","ebinah",R.drawable.family_daughter ,R.raw.family_daughter));
+        words.add(new Word ("Brother","akh",R.drawable.family_younger_brother ,R.raw.family_brother));
+        words.add(new Word ("Sister","akhot",R.drawable.family_younger_sister ,R.raw.family_sister));
+        words.add(new Word ("Grandmother","jaddah",R.drawable.family_grandmother ,R.raw.family_grandmother));
+        words.add(new Word ("Grandfather","jadd",R.drawable.family_grandfather ,R.raw.family_grandfather));
+        words.add(new Word ("uncle from father","a'mm",R.drawable.family_father ,R.raw.family_uncle_father));
+        words.add(new Word ("uncle from mother","khal",R.drawable.family_father ,R.raw.family_uncle_mother));
 
         /* Verify the contents of the array by printing out each arraylist element to the logs
         Log.v("NumbersActivity", "Word at index 0: " + words.get(0));
@@ -65,8 +72,7 @@ public class FamilyActivity extends AppCompatActivity {
         // simple_list_item_1.xml layout resource defined in the Android framework.
         // This list item layout contains a single {@link TextView}, which the adapter will set to
         // display a single word.
-        WordAdapter adapter =
-                new WordAdapter(this,words);
+        WordAdapter adapter = new WordAdapter(this, words, R.color.category_family);
 
         // Find the {@link ListView} object in the view hierarchy of the {@link Activity}.
         // There should be a {@link ListView} with the view ID called list, which is declared in the
@@ -78,8 +84,31 @@ public class FamilyActivity extends AppCompatActivity {
         // Do this by calling the setAdapter method on the {@link ListView} object and pass in
         // 1 argument, which is the {@link ArrayAdapter} with the variable name itemsAdapter.
         listView.setAdapter(adapter);
+        // Set a click listener to play the audio when the list item is clicked on
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+                // Get the {@link Word} object at the given position the user clicked on
+                Word word = words.get(position);
+
+                // Create and setup the {@link MediaPlayer} for the audio resource associated
+                // with the current word
+                mMediaPlayer = MediaPlayer.create(FamilyActivity.this, word.getAudioResourceId());
+
+                // Start the audio file
+                mMediaPlayer.start();
+
+
+                mMediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                    @Override
+                    public void onCompletion(MediaPlayer mediaPlayer) {
+                        //Toast.makeText(FamilyActivity.this, "I'm Finished", Toast.LENGTH_SHORT).show();
+                        // to release the media player
+                        mediaPlayer.release();
+                        mMediaPlayer = null;
+                    }
+                });
+            }
+        });
     }
-
-
-
 }
