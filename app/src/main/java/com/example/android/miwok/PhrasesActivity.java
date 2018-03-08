@@ -95,24 +95,28 @@ public class PhrasesActivity extends AppCompatActivity {
         // 1 argument, which is the {@link ArrayAdapter} with the variable name itemsAdapter.
         listView.setAdapter(adapter);
 
-    // Set a click listener to play the audio when the list item is clicked on
+        // Set a click listener to play the audio when the list item is clicked on
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-        @Override
-        public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-            // Get the {@link Word} object at the given position the user clicked on
-            Word word = words.get(position);
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+                // Release the media player if it currently exists because we are about to
+                // play a different sound file
+                releaseMediaPlayer();
 
-            // Create and setup the {@link MediaPlayer} for the audio resource associated
-            // with the current word
-            mMediaPlayer = MediaPlayer.create(PhrasesActivity.this, word.getAudioResourceId());
+                // Get the {@link Word} object at the given position the user clicked on
+                Word word = words.get(position);
 
-            // Start the audio file
-            mMediaPlayer.start();
+                // Create and setup the {@link MediaPlayer} for the audio resource associated
+                // with the current word
+                mMediaPlayer = MediaPlayer.create(PhrasesActivity.this, word.getAudioResourceId());
 
-            // Setup a listener on the media player, so that we can stop and release the
-            // media player once the sound has finished playing.
-            mMediaPlayer.setOnCompletionListener(mCompletionListener);
-        }
+                // Start the audio file
+                mMediaPlayer.start();
+
+                // Setup a listener on the media player, so that we can stop and release the
+                // media player once the sound has finished playing.
+                mMediaPlayer.setOnCompletionListener(mCompletionListener);
+            }
         });
     }
 
@@ -131,5 +135,10 @@ public class PhrasesActivity extends AppCompatActivity {
             // is not configured to play an audio file at the moment.
             mMediaPlayer = null;
         }
+    }
+    @Override
+    protected void onStop() {
+        super.onStop();
+       releaseMediaPlayer();
     }
 }
